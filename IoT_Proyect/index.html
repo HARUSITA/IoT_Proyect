@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Sistema de Registro ESCOM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --color-escom-blue: #004767;
+            --color-bg-light: #f4f6fa; 
+            --color-fb: #4b6299;
+            --color-tw: #5899d1;
+            --color-ig: #4b4948;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--color-escom-blue) 0%, #002d42 100%);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--color-escom-blue);
+            color: white;
+            padding: 15px 50px; 
+            display: flex; 
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header-logo-text {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo-text img {
+            height: 50px; 
+            filter: brightness(0) invert(1); 
+        }
+
+        .header-logo-text h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- CONTENIDO CENTRAL --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .login-card h1 {
+            color: var(--color-escom-blue);
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .login-card p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .btn-primary {
+            background-color: var(--color-escom-blue);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--color-escom-blue);
+            border: 2px solid var(--color-escom-blue);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover { background-color: #003650; }
+        .btn-secondary:hover { background-color: #f0f7fa; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-escom-blue);
+            color: white;
+            padding: 40px 50px;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.6em;
+            font-weight: 800;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 5px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 35px;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+
+        .social-icons .facebook { background-color: var(--color-fb); }
+        .social-icons .twitter { background-color: var(--color-tw); }
+        .social-icons .instagram { background-color: var(--color-ig); }
+
+        .footer-contact p {
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 15px 20px; }
+            .header-logo-text h4 { font-size: 0.9rem; }
+            .footer-content { flex-direction: column; text-align: center; justify-content: center; }
+            .social-icons { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-logo-text">
+            <a href="https://www.escom.ipn.mx/" target="_blank">
+                <img src="ESCOM.png" alt="Logo de ESCOM">
+            </a>
+            <h4>ESCUELA SUPERIOR DE CÓMPUTO</h4>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="login-card">
+            <h1>Bienvenido</h1>
+            <p>Sistema de Gestión de Datos Biométricos y Vehiculares</p>
+            
+            <div class="button-group">
+                <a href="login.html" class="btn btn-primary">Iniciar Sesión</a>
+                <a href="Inicio.html" class="btn btn-secondary">Registrarse</a>
+            </div>
+            
+            <p style="margin-top: 20px; font-size: 0.8rem; font-style: italic; color: #999;">
+                El usuario solo puede registrarse
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ESCOMUNIDAD</h3>
+                <p>Visita nuestras redes sociales oficiales.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/escomipnmx" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> 
+                    <a href="https://x.com/escomunidad" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/escom_ipn_mx" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-contact">
+                <p><strong>Correo:</strong> direccion_escom@ipn.mx</p>
+                <p><strong>Teléfono:</strong> (55) 5729 6000 Ext. 46188</p>
+                <p style="opacity: 0.7; font-size: 0.8rem; margin-top: 10px;">&copy; 2026 ESCOM - IPN</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

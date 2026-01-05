@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - ESCOM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --blue: #004767; --card-bg: #ffffff; --text: #333; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, var(--blue) 0%, #002d42 100%); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* HEADER */
+        header { background-color: var(--blue); color: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .header-logo-text { display: flex; align-items: center; gap: 15px; }
+        .header-logo-text img { height: 50px; filter: brightness(0) invert(1); }
+        .btn-back { color: white; text-decoration: none; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 5px; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .btn-back:hover { background: rgba(255,255,255,0.2); }
+
+        /* FORMULARIO */
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%; }
+        h1 { color: white; text-align: center; text-transform: uppercase; margin-bottom: 30px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+        
+        fieldset { background: var(--card-bg); border: none; border-radius: 12px; padding: 30px; margin-bottom: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; }
+        legend { background: var(--blue); color: white; padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 1.1em; }
+        
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #444; }
+        input, select { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 1rem; }
+        
+        .submit-button { display: block; width: 100%; background: white; color: var(--blue); padding: 15px; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .submit-button:hover { background: #f0f0f0; transform: translateY(-2px); }
+
+        footer { background-color: var(--blue); color: white; padding: 30px 50px; text-align: center; margin-top: auto; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-logo-text">
+            <img src="ESCOM.png" alt="Logo">
+            <h4>REGISTRO DE USUARIOS</h4>
+        </div>
+        <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Regresar</a>
+    </header>
+
+    <div class="container">
+        <h1>Alta en el Sistema</h1>
+        <form action="/procesar_registro" method="POST">
+            <fieldset>
+                <legend><i class="fas fa-user"></i> Datos Personales</legend>
+                <label>Nombre Completo:</label>
+                <input type="text" name="nombre" required placeholder="Nombre y Apellidos">
+                
+                <label>Boleta:</label>
+                <input type="number" name="boleta" required placeholder="Número de Boleta">
+                
+                <label>Contraseña:</label> <input type="password" name="password" required placeholder="Crea tu contraseña de acceso">
+                
+                <label>Carrera:</label>
+                <select name="carrera" required>
+                    <option value="">Selecciona...</option>
+                    <option value="ISC">Ing. Sistemas Computacionales</option>
+                    <option value="IIA">Ing. Inteligencia Artificial</option>
+                    <option value="LCD">Lic. Ciencia de Datos</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend><i class="fas fa-motorcycle"></i> Vehículo Principal</legend>
+                <label>Placas:</label>
+                <input type="text" name="placas" required placeholder="Ej. 4K205">
+                <label>Marca y Modelo:</label>
+                <input type="text" name="marca_modelo" required placeholder="Ej. Italika 250Z">
+            </fieldset>
+
+            <button type="submit" class="submit-button">COMPLETAR REGISTRO</button>
+        </form>
+    </div>
+
+    <footer><p>&copy; 2026 ESCOM - IPN</p></footer>
+</body>
+</html>

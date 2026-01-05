@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administrador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --blue: #004767; --bg: #f4f7f9; --green: #2ecc71; --red: #e74c3c; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        header { background: var(--blue); color: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .header-logo-text { display: flex; align-items: center; gap: 15px; }
+        .header-logo-text img { height: 40px; filter: brightness(0) invert(1); }
+        .btn-logout { color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 8px 15px; border-radius: 5px; transition: 0.3s; }
+        .btn-logout:hover { background: rgba(255,255,255,0.1); }
+
+        .container { padding: 40px; max-width: 1000px; margin: 0 auto; flex: 1; width: 100%; box-sizing: border-box; }
+        .search-box { background: white; padding: 15px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; gap: 10px; align-items: center; }
+        .search-box input { border: none; width: 100%; outline: none; font-size: 1rem; }
+
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        th { background: var(--blue); color: white; padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid #eee; color: #333; }
+        tr:hover { background: #f9f9f9; }
+        .btn-ver { background: var(--blue); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+
+        /* NOTIFICACIÓN (TOAST) */
+        .toast {
+            visibility: hidden; min-width: 300px; background-color: white; color: #333;
+            border-radius: 8px; padding: 15px; position: fixed; z-index: 1000; right: 30px; top: 90px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2); font-size: 1rem; display: flex; align-items: center; gap: 15px;
+            border-left: 6px solid var(--blue); transform: translateX(120%); transition: transform 0.4s ease, visibility 0.4s;
+        }
+        .toast.show { visibility: visible; transform: translateX(0); }
+        .toast.entrada { border-left-color: var(--green); }
+        .toast.salida { border-left-color: var(--red); }
+
+        /* MODAL */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; backdrop-filter: blur(2px); }
+        .modal-content { background: white; width: 90%; max-width: 500px; padding: 30px; border-radius: 15px; position: relative; animation: slideUp 0.3s; }
+        .close { position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; color: #999; }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        footer { background: var(--blue); color: white; padding: 20px; text-align: center; margin-top: auto; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-logo-text">
+            <img src="ESCOM.png">
+            <h4>PANEL ADMINISTRATIVO</h4>
+        </div>
+        <a href="/" class="btn-logout"><i class="fas fa-power-off"></i> Cerrar Sesión</a>
+    </header>
+
+    <div id="toast" class="toast">
+        <div id="toast-icon" style="font-size: 24px;"></div>
+        <div id="toast-msg"></div>
+    </div>
+
+    <div class="container">
+        <div class="search-box">
+            <i class="fas fa-search" style="color: #999;"></i>
+            <input type="text" id="busqueda" placeholder="Buscar alumno..." onkeyup="filtrar()">
+        </div>
+
+        <table>
+            <thead><tr><th>Boleta</th><th>Nombre</th><th>Carrera</th><th>Motos</th><th>Detalles</th></tr></thead>
+            <tbody id="tabla"></tbody>
+        </table>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrar()">&times;</span>
+            <h2 id="m-nombre" style="color: var(--blue); margin: 0 0 5px 0;"></h2>
+            <p style="color: #666; margin: 0;"><i class="fas fa-id-card"></i> <span id="m-boleta"></span> | <span id="m-carrera"></span></p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            
+            <h4 style="color: var(--blue);"><i class="fas fa-motorcycle"></i> Vehículos</h4>
+            <div id="m-motos"></div>
+            
+            <h4 style="color: var(--blue); margin-top: 20px;"><i class="fas fa-history"></i> Historial Reciente</h4>
+            <div id="m-historial" style="max-height: 200px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 ESCOM - IPN</footer>
+
+    <script>
+        cargarTabla();
+
+        function cargarTabla() {
+            fetch('/api/alumnos').then(r => r.json()).then(data => {
+                const t = document.getElementById('tabla');
+                t.innerHTML = "";
+                data.forEach(u => {
+                    t.innerHTML += `<tr>
+                        <td><b>${u.boleta}</b></td>
+                        <td>${u.nombre}</td>
+                        <td>${u.carrera}</td>
+                        <td><span style="background:#eee; padding:2px 8px; border-radius:10px;">${u.num_motos}</span></td>
+                        <td><button class="btn-ver" onclick="ver(${u.id}, '${u.nombre}', '${u.boleta}', '${u.carrera}')">Ver Expediente</button></td>
+                    </tr>`;
+                });
+            });
+        }
+
+        function ver(id, nombre, boleta, carrera) {
+            document.getElementById('m-nombre').innerText = nombre;
+            document.getElementById('m-boleta').innerText = boleta;
+            document.getElementById('m-carrera').innerText = carrera;
+            
+            fetch(`/api/alumno_detalle/${id}`).then(r => r.json()).then(data => {
+                document.getElementById('m-motos').innerHTML = data.motos.map(m => 
+                    `<div style="background:#f4f7f9; padding:8px; margin:5px 0; border-radius:5px; border-left: 3px solid var(--blue);"><b>${m.placas}</b> - ${m.marca_modelo}</div>`
+                ).join('');
+                
+                document.getElementById('m-historial').innerHTML = data.historial.length ? 
+                    data.historial.map(h => {
+                        let color = h.tipo === 'ENTRADA' ? '#2ecc71' : '#e74c3c';
+                        let icon = h.tipo === 'ENTRADA' ? 'fa-sign-in-alt' : 'fa-sign-out-alt';
+                        return `<div style="display:flex; justify-content:space-between; padding:8px; border-bottom:1px solid #eee;">
+                            <span><i class="fas ${icon}" style="color:${color}"></i> <b>${h.tipo}</b></span>
+                            <span style="color:#666; font-size:0.9em;">${new Date(h.fecha_hora).toLocaleString()} <br> (${h.placa})</span>
+                        </div>`;
+                    }).join('') : "<p style='color:#999'>Sin registros.</p>";
+                
+                document.getElementById('modal').style.display = 'flex';
+            });
+        }
+        
+        function cerrar() { document.getElementById('modal').style.display = 'none'; }
+        window.onclick = function(e) { if(e.target == document.getElementById('modal')) cerrar(); }
+        function filtrar() {
+            const val = document.getElementById('busqueda').value.toLowerCase();
+            document.querySelectorAll('tbody tr').forEach(tr => tr.style.display = tr.innerText.toLowerCase().includes(val) ? '' : 'none');
+        }
+
+        // --- SISTEMA DE TIEMPO REAL ---
+        let ultimoId = 0;
+
+        setInterval(() => {
+            fetch('/api/ultimo_evento').then(r => r.json()).then(evento => {
+                if (evento && evento.id > ultimoId) {
+                    if(ultimoId === 0) { ultimoId = evento.id; return; } // Ignorar carga inicial
+                    
+                    ultimoId = evento.id;
+                    notificar(evento);
+                    cargarTabla(); // Refrescar tabla silenciosamente
+                }
+            });
+        }, 1500); // Revisar cada 1.5 segundos
+
+        function notificar(ev) {
+            const toast = document.getElementById("toast");
+            const msg = document.getElementById("toast-msg");
+            const icon = document.getElementById("toast-icon");
+
+            if (ev.tipo === 'ENTRADA') {
+                icon.innerHTML = '<i class="fas fa-check-circle" style="color: var(--green);"></i>';
+                msg.innerHTML = `<b>ENTRADA AUTORIZADA</b><br>${ev.alumno_nombre}<br><small>${ev.placa}</small>`;
+                toast.className = "toast show entrada";
+            } else {
+                icon.innerHTML = '<i class="fas fa-arrow-circle-left" style="color: var(--red);"></i>';
+                msg.innerHTML = `<b>SALIDA REGISTRADA</b><br>${ev.alumno_nombre}<br><small>${ev.placa}</small>`;
+                toast.className = "toast show salida";
+            }
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 4000);
+        }
+    </script>
+</body>
+</html>
