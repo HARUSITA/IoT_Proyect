@@ -8,6 +8,7 @@ Este proyecto es una solución integral de **Internet de las Cosas (IoT)** dise�
 * [Stack Tecnológico](#-stack-tecnológico)
 * [Instalación y Configuración](#-instalación-y-configuración)
 * [Flujo de Operación](#-flujo-de-operación)
+* [Documentación](#-documentación)
 * [Autores](#-autores)
 
 ---
@@ -81,6 +82,14 @@ node app.js
 3. **Comunicación:** El **ESP32** envía la placa detectada a la Raspberry Pi vía **MQTT**.
 4. **Validación:** La Raspberry Pi consulta la base de datos **MySQL** para verificar la autorización.
 5. **Acceso:** Si la placa está autorizada, se registra el evento (entrada/salida) y el sistema permite el paso.
+
+---
+
+## 📂 Documentación y Recursos
+Puedes encontrar el material de apoyo y la presentación detallada en la carpeta `/docs`:
+
+* [Presentación del Proyecto (PPTX)](./docs/IOT2.pptx)
+* [Diagramas de Arquitectura](./docs/)
 
 ---
 
