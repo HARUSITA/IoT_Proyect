@@ -88,8 +88,8 @@ node app.js
 ## 📂 Documentación y Recursos
 Puedes encontrar el material de apoyo y la presentación detallada en la carpeta `/docs`:
 
-* [Presentación del Proyecto (PPTX)](./docs/IOT2.pptx)
-* [Diagramas de Arquitectura](./docs/)
+* [IOT2.pptx](./docs/IOT2.pptx)
+* [Documentacion_IoT_Proyect_Motos.pdf](./docs/Documentacion_IoT_Proyect_Motos.pdf)
 
 ---
 
