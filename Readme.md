@@ -100,10 +100,10 @@ Puedes encontrar el material de apoyo y la presentación detallada en la carpeta
 ## 👥 Autores
 
 **MORGANS** - *Equipo de desarrollo*:
-* **EMIR** 
-* **ANA HARUMI JIMENEZ MEZA** 
-* **JOSUE** 
-* **CLAUDIA EMILIA RAMIREZ** 
+* **BONILLA RAMIREZ JOSUE ELEAZAR** 
+* **JIMENEZ MEZA ANA HARUMI** 
+* **PEDROZA VILLAGOMEZ EMIR** 
+* **RAMIREZ CLAUDIA EMILIA** 
 
 ---
 
