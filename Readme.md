@@ -95,7 +95,7 @@ Puedes encontrar el material de apoyo y la presentación detallada en la carpeta
 
 ## 👥 Autores
 
-* **Morgans** - *Equipo de desarrollo*:
+**MORGANS** - *Equipo de desarrollo*:
 * **EMIR** 
 * **HARUMI** 
 * **JOSUE** 
