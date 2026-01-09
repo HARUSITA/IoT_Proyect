@@ -94,7 +94,7 @@ node app.js
 
 ---
 
-> **Nota:** Este proyecto fue desarrollado para la unidad de **Sistemas Embebidos 6CM3** el 5 de enero de 2026.
+> **Nota:** Este proyecto fue desarrollado para la unidad de **Sistemas Embebidos 6CM3**.
 
 ```
 
