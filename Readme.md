@@ -8,7 +8,7 @@ Este proyecto es una solución integral de **Internet de las Cosas (IoT)** dise�
 * [Stack Tecnológico](#-stack-tecnológico)
 * [Instalación y Configuración](#-instalación-y-configuración)
 * [Flujo de Operación](#-flujo-de-operación)
-* [Documentación](#-documentación)
+* [Documentación y Recursos](#-documentación-y-recursos)
 * [Autores](#-autores)
 
 ---
