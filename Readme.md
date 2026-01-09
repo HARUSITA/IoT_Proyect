@@ -1,5 +1,9 @@
 # 🛵 IoT_Proyect: Control de Acceso Vehicular (ESCOM)
 
+<p align="center">
+  <img src="https://usagif.com/wp-content/uploads/2021/03/bike-emoji-13.gif" alt="Bike Animation" width="200">
+</p>
+
 Este proyecto es una solución integral de **Internet de las Cosas (IoT)** diseñada para automatizar y asegurar el acceso de motocicletas a las instalaciones de **ESCOM**. Combina un sistema de gestión web robusto con tecnología de reconocimiento automático de placas (**ANPR**) para optimizar el flujo vehicular.
 
 ## 📑 Tabla de Contenidos
