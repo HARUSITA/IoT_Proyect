@@ -101,13 +101,13 @@ Puedes encontrar el material de apoyo y la presentación detallada en la carpeta
 
 **MORGANS** - *Equipo de desarrollo*:
 * **EMIR** 
-* **HARUMI** 
+* **ANA HARUMI JIMENEZ MEZA** 
 * **JOSUE** 
-* **EMILIA** 
+* **CLAUDIA EMILIA RAMIREZ** 
 
 ---
 
-> **Nota:** Este proyecto fue desarrollado para la unidad de **Sistemas Embebidos 6CM3**.
+> **Nota:** Este proyecto fue desarrollado para la unidad de **Embedded systems/Internet of Things 6CM3**.
 
 ```
 
