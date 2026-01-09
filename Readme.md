@@ -64,3 +64,38 @@ npm install
 
 # Iniciar el servidor
 node app.js
+
+```
+
+### 4. Implementación IoT
+
+1. Configura tu **Raspberry Pi** para actuar como broker MQTT (ej. usando Mosquitto).
+2. Carga el código en el **ESP32** asegurándote de que apunte a la dirección IP de la Raspberry Pi para la publicación y suscripción de datos.
+
+---
+
+## 🔄 Flujo de Operación
+
+1. **Registro:** El alumno inscribe su motocicleta en la plataforma web asociada a su perfil.
+2. **Detección:** Al acercarse al acceso, el sistema **ANPR** detecta y lee la placa de la motocicleta.
+3. **Comunicación:** El **ESP32** envía la placa detectada a la Raspberry Pi vía **MQTT**.
+4. **Validación:** La Raspberry Pi consulta la base de datos **MySQL** para verificar la autorización.
+5. **Acceso:** Si la placa está autorizada, se registra el evento (entrada/salida) y el sistema permite el paso.
+
+---
+
+## 👥 Autores
+
+* **Morgans** - *Equipo de desarrollo*:
+* **EMIR** 
+* **HARUMI** 
+* **JOSUE** 
+* **EMILIA** 
+
+---
+
+> **Nota:** Este proyecto fue desarrollado para la unidad de **Sistemas Embebidos 6CM3** el 5 de enero de 2026.
+
+```
+
+```
